@@ -4,6 +4,7 @@ import slack
 
 
 def get_bot_conf():
+    """Retrives bot config data such as token, channels and messages"""
     conf_path = os.path.abspath("examples.json")
     with open(conf_path, "r") as conf_file:
         conf = json.loads(conf_file.read())
