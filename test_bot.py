@@ -11,8 +11,7 @@ CONFIGS = {
 
 
 def test_conf_file_exists():
-    conf_file = os.path.abspath(CONFIGS['filename'])
-    assert conf_file in os.listdir()
+    assert CONFIGS['filename'] in os.listdir()
 
 
 def test_conf_file_has_token_key():
