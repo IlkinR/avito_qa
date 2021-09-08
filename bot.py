@@ -11,11 +11,17 @@ def get_bot_conf():
     return conf.get("bot_token"), conf.get("channels")
 
 
-token, messages = get_bot_conf()
-client = slack.WebClient(token=token)
+def send_messages():
+    token, messages = get_bot_conf()
+    client = slack.WebClient(token=token)
 
-for message in messages:
-    channel = "#" + message.get("channel")
-    sent_text = message.get("text")
-    client.chat_postMessage(channel=channel, text=sent_text)
-    print(f'Message "{sent_text} is sent successfully to channel "{channel}"')
+    for message in messages:
+        channel = message.get("channel")
+        if channel is not None:
+            sent_text = message.get("text")
+            client.chat_postMessage(channel='#' + channel, text=sent_text)
+            print(f'Message "{sent_text}" is sent successfully to channel "{channel}"')
+
+
+if __name__ == '__main__':
+    send_messages()
